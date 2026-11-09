@@ -1,0 +1,12 @@
+.vs/
+**/bin/
+**/obj/
+*.user
+*.suo
+*.log
+
+.idea/
+.local/
+*.sln.DotSettings.user
+packages/
+.DS_Store
