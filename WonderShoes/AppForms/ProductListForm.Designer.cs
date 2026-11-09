@@ -107,6 +107,10 @@
             this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.Name = "ProductListForm";
+            this.cheapFirst.CheckedChanged += new System.EventHandler(this.cheapFirst_CheckedChanged);
+            this.expensiveFirst.CheckedChanged += new System.EventHandler(this.expensiveFirst_CheckedChanged);
+            this.categoryComboBox.SelectedIndexChanged += new System.EventHandler(this.categoryComboBox_SelectedIndexChanged);
+            this.searchTextBox.TextChanged += new System.EventHandler(this.searchTextBox_TextChanged);
             this.Load += new System.EventHandler(this.ProductListForm_Load);
             this.priceGroupBox.ResumeLayout(false);
             this.priceGroupBox.PerformLayout();

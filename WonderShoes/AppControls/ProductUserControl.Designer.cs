@@ -99,7 +99,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.photoPictureBox)).EndInit();
             this.infoPanel.ResumeLayout(false);
             this.infoPanel.PerformLayout();
-            this.pricePanel.ResumeLayout(false);
+            this.pricePanel.ResumeLayout(true);
             this.ResumeLayout(false);
         }
 
