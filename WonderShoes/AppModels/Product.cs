@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -43,6 +44,41 @@ namespace WonderShoes.AppModels
         public virtual ICollection<ProductSize> ProductSize { get; set; }
 
         public virtual Manufacturer Manufacturer { get; set; }
+
+        // STUD {
+        /// <summary>
+        /// Цена в рублях со скидкой 25%, если на товар не было заказов
+        /// в апреле текущего года.
+        /// </summary>
+        /// <returns>Цена товара, округлённая до двух знаков.</returns>
+        public decimal GetPrice()
+        {
+            int currentYear = DateTime.Now.Year;
+            bool hasSales = Program.context.OrderProduct.Count(op =>
+                op.ProductId == this.IdProduct &&
+                op.Order.Date.HasValue &&
+                op.Order.Date.Value.Year == currentYear &&
+                op.Order.Date.Value.Month == 4) > 0;
+
+            decimal result = ProductPrice.GetValueOrDefault();
+            if (!hasSales)
+            {
+                result = Math.Round(result * 0.75m, 2);
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Обозначение остатка: «Много» при количестве более пяти,
+        /// иначе «Мало».
+        /// </summary>
+        /// <returns>Обозначение суммарного остатка размеров товара.</returns>
+        public string GetStock()
+        {
+            int stock = ProductSize.Sum(p => p.Stock) ?? 0;
+            return stock > 5 ? "Много" : "Мало";
+        }
+        // } STUD
 
     }
 }
