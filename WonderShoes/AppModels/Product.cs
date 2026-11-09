@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.Windows.Forms;
 using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -77,6 +79,26 @@ namespace WonderShoes.AppModels
         {
             int stock = ProductSize.Sum(p => p.Stock) ?? 0;
             return stock > 5 ? "Много" : "Мало";
+        }
+        /// <summary>
+        /// Изображение товара из каталога img рядом с приложением.
+        /// </summary>
+        /// <returns>Изображение, указанное в поле Photo.</returns>
+        public Image GetImage()
+        {
+            string imgPath = System.IO.Path.Combine(Application.StartupPath, "img", Photo);
+            Image img = Image.FromFile(imgPath);
+            return img;
+        }
+
+        /// <summary>
+        /// Критически низкий запас: суммарный остаток не более трёх пар.
+        /// </summary>
+        /// <returns>Признак критически низкого запаса.</returns>
+        public bool IsRunningLow()
+        {
+            int stock = ProductSize.Sum(p => p.Stock) ?? 0;
+            return stock <= 3;
         }
         // } STUD
 
