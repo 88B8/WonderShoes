@@ -65,6 +65,7 @@
             this.backButton.Size = new System.Drawing.Size(75, 23);
             this.backButton.Text = "Назад";
             this.backButton.UseVisualStyleBackColor = false;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // fullNameLabel
             this.fullNameLabel.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
             this.fullNameLabel.AutoSize = false;
@@ -101,6 +102,7 @@
             this.Icon = global::WonderShoes.Properties.Resources.logoIcon;
             this.Name = "ParentForm";
             this.Text = "Чудо Обувь";
+            this.Load += new System.EventHandler(this.ParentForm_Load);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.ParentForm_FormClosed);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();

@@ -78,6 +78,18 @@
     <Compile Include="AppForms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="AppModels\ContextDb.cs" />
+    <Compile Include="AppModels\Manufacturer.cs" />
+    <Compile Include="AppModels\Order.cs" />
+    <Compile Include="AppModels\OrderProduct.cs" />
+    <Compile Include="AppModels\Product.cs" />
+    <Compile Include="AppModels\ProductSize.cs" />
+    <Compile Include="AppModels\User.cs" />
+    <Compile Include="Services\AuthManager.cs" />
+    <Compile Include="Services\FormManager.cs" />
+    <Compile Include="Services\UserSession.cs" />
+    <Compile Include="AppForms\ProductListForm.cs"><SubType>Form</SubType></Compile>
+    <Compile Include="AppForms\ProductListForm.Designer.cs"><DependentUpon>ProductListForm.cs</DependentUpon></Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -103,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="connectionStrings.config"><CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory></None>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\MSTest.Analyzers.4.0.1\analyzers\dotnet\cs\MSTest.Analyzers.CodeFixes.dll" />
@@ -123,5 +136,9 @@
       <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\MSTest.TestFramework.4.0.1\build\net462\MSTest.TestFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSTest.TestFramework.4.0.1\build\net462\MSTest.TestFramework.targets'))" />
+  </Target>
+  <!-- Необязательная локальная конфигурация подключения исключена из сдаваемого проекта. -->
+  <Target Name="CopyLocalDatabaseConnection" AfterTargets="Build" Condition="Exists('$(MSBuildProjectDirectory)\..\.local\pr4\connectionStrings.config')">
+    <Copy SourceFiles="$(MSBuildProjectDirectory)\..\.local\pr4\connectionStrings.config" DestinationFiles="$(TargetDir)connectionStrings.config" />
   </Target>
 </Project>

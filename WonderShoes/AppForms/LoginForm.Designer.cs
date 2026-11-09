@@ -42,6 +42,7 @@
             this.loginButton.TabIndex = 1;
             this.loginButton.Text = "Вход";
             this.loginButton.UseVisualStyleBackColor = false;
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // guestButton
             this.guestButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
             this.guestButton.BackColor = System.Drawing.Color.FromArgb(112, 178, 175);
@@ -53,6 +54,7 @@
             this.guestButton.TabIndex = 2;
             this.guestButton.Text = "Гость";
             this.guestButton.UseVisualStyleBackColor = false;
+            this.guestButton.Click += new System.EventHandler(this.guestButton_Click);
             // LoginForm
             this.splitContainer1.Panel2.Controls.Add(this.usernameLabel);
             this.splitContainer1.Panel2.Controls.Add(this.usernameTextBox);
